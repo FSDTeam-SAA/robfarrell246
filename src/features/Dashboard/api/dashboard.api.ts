@@ -1,0 +1,52 @@
+import { DashboardMetric } from "../types/dashboard.types";
+
+export const DASHBOARD_METRICS: DashboardMetric[] = [
+  {
+    title: "Total Properties",
+    value: "4",
+    tag: "+2 this month",
+    tagVariant: "indigo",
+    subtitle: "Spaces under active spatial modeling",
+    iconName: "Building2",
+    iconColor: "blue",
+    sparklineColor: "blue",
+  },
+  {
+    title: "Active Projects",
+    value: "12",
+    tag: "3 ready for analysis",
+    tagVariant: "indigo",
+    iconName: "FolderKanban",
+    iconColor: "blue",
+    sparklineColor: "blue",
+  },
+  {
+    title: "AI Analyses",
+    value: "87",
+    tag: "+5 this month",
+    tagVariant: "indigo",
+    iconName: "Sparkles",
+    iconColor: "blue",
+    sparklineColor: "blue",
+  },
+  {
+    title: "Reports Generated",
+    value: "2",
+    tag: "2 this month",
+    tagVariant: "green",
+    subtitle: "Formatted for pitch presentations",
+    iconName: "FileCheck",
+    iconColor: "green",
+    sparklineColor: "green",
+  },
+  {
+    title: "AI Credits",
+    value: "1,250",
+    tag: "of 2,000 available",
+    tagVariant: "amber",
+    linkText: "Manage Credits & Ledger",
+    iconName: "Coins",
+    iconColor: "amber",
+    sparklineColor: "amber",
+  },
+];
