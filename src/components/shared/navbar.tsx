@@ -36,9 +36,13 @@ export function Navbar({
     } else if (pathname.toLowerCase().includes("credit")) {
       displayTitle = "AI Credits & Wallet";
       displayDesc = displayDesc || "Good afternoon, Alex. Here’s what’s happening across your retail portfolio.";
+    } else if (/^\/project\/.+/i.test(pathname)) {
+      // Project workspace: the Figma top bar carries no page title.
+      displayTitle = " ";
+      displayDesc = " ";
     } else if (pathname.toLowerCase().includes("project")) {
-      displayTitle = "Retail Projects";
-      displayDesc = displayDesc || "Manage your property development and lease analysis portfolios.";
+      displayTitle = "Commercial Property Analyses";
+      displayDesc = displayDesc || "Manage feasibility studies, photorealistic concept visualizations, and tenant pitch dossiers.";
     } else if (pathname.toLowerCase().includes("help")) {
       displayTitle = "Help & Support";
       displayDesc = displayDesc || "Find answers, learn how Vision Before Lease works, or contact our commercial advisory support team.";

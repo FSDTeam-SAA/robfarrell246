@@ -1,4 +1,5 @@
 export { ProjectView } from "./components/project-view";
+export { ProjectDetailView } from "./components/project-detail-view";
 export { ProjectCard } from "./components/project-card";
 export { useProjects } from "./hooks/use-projects";
 export * from "./types/project.types";

@@ -1,40 +1,38 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { ProjectItem, ProjectFilterStatus } from "../types/project.types";
+import { useMemo, useState } from "react";
+
 import { INITIAL_PROJECTS } from "../api/project.api";
-import { toast } from "sonner";
 
 export function useProjects() {
-  const [projects, setProjects] = useState<ProjectItem[]>(INITIAL_PROJECTS);
   const [searchQuery, setSearchQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState<ProjectFilterStatus>("all");
+  const [status, setStatus] = useState("All Statuses");
+  const [market, setMarket] = useState("All Markets");
+  const [propertyType, setPropertyType] = useState("All Property Types");
 
-  const filteredProjects = useMemo(() => {
-    return projects.filter((item) => {
+  const projects = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    return INITIAL_PROJECTS.filter((item) => {
       const matchesSearch =
-        item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.city.toLowerCase().includes(searchQuery.toLowerCase());
-
-      const matchesStatus =
-        statusFilter === "all" || item.status === statusFilter;
-
-      return matchesSearch && matchesStatus;
+        !query || item.name.toLowerCase().includes(query) || item.address.toLowerCase().includes(query);
+      const matchesStatus = status === "All Statuses" || item.status === status;
+      const matchesMarket = market === "All Markets" || item.address.includes(market);
+      const matchesType =
+        propertyType === "All Property Types" ||
+        item.topConcept.toLowerCase().includes(propertyType.split(" ")[0].toLowerCase());
+      return matchesSearch && matchesStatus && matchesMarket && matchesType;
     });
-  }, [projects, searchQuery, statusFilter]);
-
-  const handleCreateProject = () => {
-    toast.info("Opening New Property Ingestion Wizard...");
-  };
+  }, [searchQuery, status, market, propertyType]);
 
   return {
-    projects: filteredProjects,
-    totalCount: projects.length,
+    projects,
     searchQuery,
     setSearchQuery,
-    statusFilter,
-    setStatusFilter,
-    handleCreateProject,
+    status,
+    setStatus,
+    market,
+    setMarket,
+    propertyType,
+    setPropertyType,
   };
 }

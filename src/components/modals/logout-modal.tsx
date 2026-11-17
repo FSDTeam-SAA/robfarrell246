@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { LogOut } from "lucide-react";
-
+ 
 type LogoutModalProps = {
   isOpen: boolean;
   onClose: () => void;
