@@ -1,76 +1,48 @@
-import { ProjectItem } from "../types/project.types";
+import { ConceptOpportunity, ProjectItem } from "../types/project.types";
 
-export const INITIAL_PROJECTS: ProjectItem[] = [
+const PROJECT_TEMPLATES: Omit<ProjectItem, "id">[] = [
   {
-    id: "proj-1",
     name: "South Congress Retail Gallery",
-    address: "1601 S Congress Ave",
-    city: "Austin, TX 78704",
-    propertyType: "High Street Retail",
-    sqft: 24500,
-    status: "Active",
-    fitScore: 94,
-    activeAnalyses: 8,
-    lastUpdated: "2 hours ago",
+    address: "1601 S Congress Ave, Austin, TX 78704",
+    topConcept: "Fast Casual Restaurant & Taproom",
+    footprint: "2,450 RSF",
+    status: "Completed",
+    imageUrl: "/assets/images/project-restaurant.png",
   },
   {
-    id: "proj-2",
-    name: "123 Market Street Suite 104",
-    address: "123 Market Street",
-    city: "Austin, TX 78701",
-    propertyType: "Urban Corner Retail",
-    sqft: 4800,
-    status: "In Review",
-    fitScore: 88,
-    activeAnalyses: 4,
-    lastUpdated: "Yesterday",
+    name: "123 Market Street Retail Plaza - Suite 104",
+    address: "123 Market Street, Suite 104, Austin, TX 78701",
+    topConcept: "Commercial Feasibility Study",
+    footprint: "2,450 RSF",
+    status: "Completed",
+    imageUrl: "/assets/images/project-fitness.png",
   },
   {
-    id: "proj-3",
-    name: "Domain Northside Suite 210",
-    address: "11821 Rock Rose Ave",
-    city: "Austin, TX 78758",
-    propertyType: "Lifestyle Center",
-    sqft: 18200,
-    status: "Active",
-    fitScore: 91,
-    activeAnalyses: 6,
-    lastUpdated: "3 days ago",
+    name: "456 Oak Avenue Plaza - Suite B",
+    address: "456 Oak Avenue, Dallas, TX 75201",
+    topConcept: "Commercial Feasibility Study",
+    footprint: "1,800 RSF",
+    status: "Completed",
+    imageUrl: "/assets/images/project-reception.png",
   },
-  {
-    id: "proj-4",
-    name: "Downtown Retail Center",
-    address: "600 Congress Ave",
-    city: "Austin, TX 78701",
-    propertyType: "Mixed-Use Podium",
-    sqft: 32000,
-    status: "Feasibility Study",
-    fitScore: 82,
-    activeAnalyses: 3,
-    lastUpdated: "1 week ago",
-  },
-  {
-    id: "proj-5",
-    name: "Mueller Regional Center",
-    address: "1900 Aldrich St",
-    city: "Austin, TX 78723",
-    propertyType: "Neighborhood Center",
-    sqft: 45000,
-    status: "Active",
-    fitScore: 89,
-    activeAnalyses: 5,
-    lastUpdated: "2 weeks ago",
-  },
-  {
-    id: "proj-6",
-    name: "East Riverside Corridor Strip",
-    address: "2100 E Riverside Dr",
-    city: "Austin, TX 78741",
-    propertyType: "Suburban Commercial",
-    sqft: 15400,
-    status: "Archived",
-    fitScore: 76,
-    activeAnalyses: 1,
-    lastUpdated: "1 month ago",
-  },
+];
+
+/** Figma shows the same three properties repeated in two rows. */
+export const INITIAL_PROJECTS: ProjectItem[] = [...PROJECT_TEMPLATES, ...PROJECT_TEMPLATES].map(
+  (project, index) => ({ ...project, id: `proj-${index + 1}` }),
+);
+
+export const STATUS_FILTERS = ["All Statuses", "Completed", "In Progress", "Draft"] as const;
+export const MARKET_FILTERS = ["All Markets", "Austin, TX", "Dallas, TX"] as const;
+export const PROPERTY_TYPE_FILTERS = [
+  "All Property Types",
+  "Food & Beverage",
+  "Boutique Fitness",
+  "Commercial Feasibility",
+] as const;
+
+export const CONCEPT_OPPORTUNITIES: ConceptOpportunity[] = [
+  { rank: 1, category: "Food & Beberage", title: "Fast Casual Taproom & Kitchen", fitScore: 91 },
+  { rank: 2, category: "Food & Beberage", title: "Fast Casual Taproom & Kitchen", fitScore: 84 },
+  { rank: 3, category: "Food & Beberage", title: "Fast Casual Taproom & Kitchen", fitScore: 78 },
 ];
